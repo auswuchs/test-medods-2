@@ -1,8 +1,6 @@
 <script setup>
 import { ref, } from 'vue';
 
-
-
 const sequence = ref([])
 const sequenceToGuess = ref([])
 
@@ -25,9 +23,7 @@ const mouseDown = (e) => {
   e.target.style.opacity = 1
 
   const pressedPanel = +e.target.dataset.panel
-  const audio = `./src/assets/sounds/${pressedPanel}.mp3`
-  const note = new Audio(audio);
-  note.play()
+  playSound(pressedPanel)
 }
 
 /**
@@ -98,19 +94,29 @@ const getRandomPanel = () => {
 }
 
 /**
+ * Play sound of current panel.
+ * @param {number} panelNumber The data-panel number from 1 to 4.
+ */
+const playSound = (panelNumber) => {
+  const audio = `/sounds/${panelNumber}.mp3`
+  const note = new Audio(audio);
+  note.play()
+}
+
+/**
  * Play sound of clicked panel. Set panel styles
  * after flashInterval for flashDuration time.
  * @param {number} panel The data-panel number from 1 to 4.
  * @return {promise} The result of function completion.
  */
 const flash = (panel) => {
-  const audio = `./src/assets/sounds/${panel}.mp3`
-  const note = new Audio(audio);
+
 
   return new Promise((res) => {
     setTimeout(() => {
       setStyles(panel)
-      note.play()
+      playSound(panel)
+
       setTimeout(() => {
         removeStyles(panel)
         res()
