@@ -1,10 +1,10 @@
 <script setup>
-import TheWelcome from './components/TheWelcome.vue'
+import TheGame from './components/TheGame.vue'
 </script>
 
 <template>
   <main class="main">
-    <TheWelcome />
+    <The-Game />
   </main>
 </template>
 
@@ -20,9 +20,12 @@ import TheWelcome from './components/TheWelcome.vue'
 }
 
 .main {
-  display: grid;
-  justify-items: center;
+  display: flex;
   align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 75px;
+  position: relative;
   height: 70vh;
 }
 </style>
